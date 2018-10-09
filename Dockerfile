@@ -1,3 +1,4 @@
+FROM eboraas/apache-php
 MAINTAINER shirts-n-druck
 
 RUN apt-get update && apt-get -y install git curl php5-mcrypt php7.2-json && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
