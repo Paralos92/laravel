@@ -266,8 +266,10 @@ RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/let
 ADD src/ /var/www/html/
 ADD errors/ /var/www/errors
 
-RUN curl -L https://github.com/laravel/laravel/archive/v5.3.16.tar.gz | tar xz
-RUN docker run --rm -v $(pwd):/app composer/composer install
+RUN curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN curl -L https://github.com/laravel/laravel/archive/v5.3.16.tar.gz | tar xz && \
+    docker run --rm -v $(pwd):/app composer/composer install
+ 
 
 EXPOSE 443 80
 
