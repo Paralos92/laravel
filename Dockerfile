@@ -2,7 +2,7 @@ FROM nginx:stable-alpine
 
 RUN apt-get update && \
     apt-get install -y git zip unzip && \
-	apt-get install php7.2 && \
+	apt-get install php7.2 php7.2-common php7.2-cli php7.2-fpm && \
 	apt-get install curl && \
     apt-get -y autoremove && \
     apt-get clean && \
