@@ -1,5 +1,5 @@
 FROM nginx:stable-alpine
-COPY static-html-directory /usr/share/nginx/html
+
 RUN apt-get update && \
     apt-get install -y git zip unzip && \
 	apt-get install php7.2 && \
