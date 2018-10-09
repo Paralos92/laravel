@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine
+FROM bitnami/laravel
 
 RUN apt-get update && \
     apt-get install -y git && \
