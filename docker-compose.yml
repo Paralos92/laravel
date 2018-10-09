@@ -1,0 +1,37 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: fwartner/laravelapp
+    volumes:
+      - '.:/var/www/html'
+    networks:
+      - laravelnet
+  node:
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    image: fwartner/node
+    volumes:
+      - '.:/var/www/html'
+    networks:
+      - laravelnet
+  mysql:
+    image: 'mysql:5.7'
+    volumes:
+      - 'mysqldata:/var/lib/mysql'
+    networks:
+      - laravelnet
+    environment:
+      - MYSQL_ROOT_PASSWORD=secretrootpass
+      - MYSQL_DATABASE=homestead
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+  redis:
+    image: 'redis:alpine'
+    volumes:
+      - 'redisdata:/data'
+    networks:
+      - laravelnet
