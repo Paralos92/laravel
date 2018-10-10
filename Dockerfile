@@ -1,6 +1,11 @@
-RUN curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-RUN composer global require "laravel/installer"
-RUN laravel new /var/www/html/shirtsndruck 
+FROM php:7.2.9-fpm
+RUN apt-get update -y && apt-get install -y openssl zip unzip git
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN docker-php-ext-install pdo mbstring
+WORKDIR /app
+COPY . /app
+RUN composer install
 
-EXPOSE 443 80
+CMD php artisan serve --host=0.0.0.0 --port=80
+EXPOSE 80
 
