@@ -1,4 +1,4 @@
-FROM php:7.2.9-fpm
+FROM eboraas/apache-php
 RUN apt-get update && apt-get -y install git && apt-get -y autoremove && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/sbin/a2enmod rewrite
