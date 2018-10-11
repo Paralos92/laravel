@@ -1,6 +1,5 @@
 FROM php:7.2.9-fpm
 RUN apt-get update -y && apt-get install -y openssl zip unzip git
-RUN /usr/sbin/a2dissite '*' && /usr/sbin/a2ensite 000-laravel 001-laravel-ssl
 
 RUN /usr/bin/curl -sS https://getcomposer.org/installer |/usr/bin/php
 RUN /bin/mv composer.phar /usr/local/bin/composer
